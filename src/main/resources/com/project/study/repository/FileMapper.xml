@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.study.repository.FileMapper">
+
+	<insert id="saveFile">
+		INSERT INTO BOARDFILE
+		(FILENUMBER, BOARDNUMBER, UPLOADFILENAME, STOREFILENAME, ATTACH)
+		VALUES(SEQ_BOARDFILE.NEXTVAL, #{boardNumber}, #{uploadFileName}, #{storeFileName}, #{attach})
+	</insert>
+	
+	<select id="findAttach" resultType="Item">
+		SELECT * FROM BOARDFILE
+		WHERE BOARDNUMBER = #{boardNumber} AND ATTACH = '1'
+	</select>
+	
+	<select id="findImages" resultType="Item">
+		SELECT * FROM BOARDFILE
+		WHERE BOARDNUMBER = #{boardNumber} AND ATTACH = '0'
+	</select>
+</mapper>
